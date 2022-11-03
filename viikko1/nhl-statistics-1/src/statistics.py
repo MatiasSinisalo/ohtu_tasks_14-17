@@ -6,11 +6,6 @@ def sort_by_points(player):
 
 
 class Statistics:
-    def __init__(self):
-        reader = PlayerReader()
-
-        self._players = reader.get_players()
-    
     def __init__(self, playerReader):
         reader = playerReader
 
@@ -40,6 +35,7 @@ class Statistics:
 
         result = []
         i = 0
+        #when how_may is > _players.size we crash here and the how_many value is not checked?
         while i <= how_many:
             result.append(sorted_players[i])
             i += 1
