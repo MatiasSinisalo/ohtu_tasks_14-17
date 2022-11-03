@@ -1,5 +1,6 @@
 import unittest
 from statistics import Statistics
+from statistics import SortBy
 from player import Player
 
 class PlayerReaderStub:
@@ -19,7 +20,6 @@ class TestStatistics(unittest.TestCase):
             PlayerReaderStub()
         )
     def test_konstructori_asettaa_pelaajat_oikein(self):
-        players =  PlayerReaderStub().get_players()
         self.assertEqual(self.statistics._players[0].name, "Semenko" )
         self.assertEqual(self.statistics._players[1].name, "Lemieux" )
         self.assertEqual(self.statistics._players[2].name, "Kurri" )
@@ -39,12 +39,37 @@ class TestStatistics(unittest.TestCase):
         self.assertEqual(players[1].name, "Kurri")
         self.assertEqual(players[2].name, "Gretzky")
    
-    def test_top_palauttaa_pelaajat_oikeassa_jarjestyksessa(self):
+    def test_top_palauttaa_pelaajat_oikeassa_jarjestyksessa_kun_jarjestetaan_pisteiden_mukaan(self):
         players = self.statistics.top(4)
         self.assertEqual(players[0].name, "Gretzky")
         self.assertEqual(players[1].name, "Lemieux")
         self.assertEqual(players[2].name, "Yzerman")
         self.assertEqual(players[3].name, "Kurri")
         self.assertEqual(players[4].name, "Semenko")
+    
+    def test_top_palauttaa_pelaajat_oikeassa_jarjestyksessa_kun_jarjestetaan_maalien_mukaan(self):
+        players = self.statistics.top(4, SortBy.GOALS)
+        self.assertEqual(players[0].name, "Lemieux")
+        self.assertEqual(players[1].name, "Yzerman")
+        self.assertEqual(players[2].name, "Kurri")
+        self.assertEqual(players[3].name, "Gretzky")
+        self.assertEqual(players[4].name, "Semenko")
+    
+    def test_top_palauttaa_pelaajat_oikeassa_jarjestyksessa_kun_jarjestetaan_avustuksien_mukaan(self):
+        players = self.statistics.top(4, SortBy.ASSISTS)
+        self.assertEqual(players[0].name, "Gretzky")
+        self.assertEqual(players[1].name, "Yzerman")
+        self.assertEqual(players[2].name, "Lemieux")
+        self.assertEqual(players[3].name, "Kurri")
+        self.assertEqual(players[4].name, "Semenko")
+    
+    def test_top_palauttaa_pelaajat_kun_jarjestetaan_vaaralla_arvolla(self):
+        players = self.statistics.top(4, 999)
+        self.assertEqual(players[0].name, "Semenko" )
+        self.assertEqual(players[1].name, "Lemieux" )
+        self.assertEqual(players[2].name, "Kurri" )
+        self.assertEqual(players[3].name, "Yzerman" )
+        self.assertEqual(players[4].name,"Gretzky" )
+
 
    
