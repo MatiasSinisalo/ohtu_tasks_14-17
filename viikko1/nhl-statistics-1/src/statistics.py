@@ -10,6 +10,11 @@ class Statistics:
         reader = PlayerReader()
 
         self._players = reader.get_players()
+    
+    def __init__(self, playerReader):
+        reader = playerReader
+
+        self._players = reader.get_players()
 
     def search(self, name):
         for player in self._players:
