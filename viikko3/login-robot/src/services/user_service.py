@@ -17,6 +17,9 @@ class UserService:
         if not username or not password:
             raise UserInputError("Username and password are required")
 
+       
+
+
         user = self._user_repository.find_by_username(username)
 
         if not user or user.password != password:
@@ -36,5 +39,7 @@ class UserService:
     def validate(self, username, password):
         if not username or not password:
             raise UserInputError("Username and password are required")
+        if len(username) < 3:
+            raise UserInputError("Username should be at least 3 characters long")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
