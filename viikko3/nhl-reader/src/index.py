@@ -2,6 +2,7 @@
 import requests
 from player import Player
 
+
 def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2021-22/players"
     response = requests.get(url).json()
@@ -37,7 +38,7 @@ def main():
 
     print("Oliot:")
 
-
+    players.sort(key=lambda p : p.assists + p.goals, reverse=True)
     for player in players:
         print(player)
 
