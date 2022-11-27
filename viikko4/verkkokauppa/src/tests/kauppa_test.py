@@ -98,3 +98,24 @@ class TestKauppa(unittest.TestCase):
         #vain tuotteesta jota on varastossa kuuluu veloittaa
         self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 5)
        
+    def test_aloita_asiointi_kutsu_nollaa_ostoskorin_tiedot(self):
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu("pekka", "12345")
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 3)
+    
+    def test_kauppa_pyytaa_viitenumeron_jokaiselle_lisatylle_tuotteelle(self):
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+        self.viitegeneraattori_mock.uusi.assert_called()
+        
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.lisaa_koriin(2)
+        self.viitegeneraattori_mock.uusi.assert_called()
+       
