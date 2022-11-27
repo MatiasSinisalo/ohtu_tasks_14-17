@@ -11,9 +11,9 @@ class Kauppa:
         self._yhteishinta = self._yhteishinta + hinta
 
     def maksa(self, tilinumero):
-       self.aloita_ostokset() 
-       # self._pankki.maksa(
-       #     tilinumero,
-       #     self._yhteishinta,
-       #     self._viitegeneraattori.uusi()
-       # )
+      
+        self._pankki.maksa(
+            tilinumero,
+            self._yhteishinta,
+            self._viitegeneraattori.uusi()
+        )
