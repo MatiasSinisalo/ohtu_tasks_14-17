@@ -70,3 +70,14 @@ class TestOstoskori(unittest.TestCase):
         self.assertEqual(len(ostokset), 2)
         self.assertEqual(type(ostokset[0]) is type(Ostos(maito)), True)
         self.assertEqual(type(ostokset[1]) is type(Ostos(voi)), True)
+    
+        
+    def test_kahden_saman_tuotteen_lisaamisen_jalkeen_korissa_yksi_ostos(self):
+        maito = Tuote("Maito", 3)
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(maito)
+        ostokset = self.kori.ostokset()
+        self.assertEqual(len(ostokset), 1)
+        self.assertEqual(type(ostokset[0]) is type(Ostos(maito)), True)
+        
+
