@@ -1,7 +1,7 @@
 KAPASITEETTI = 5
 OLETUSKASVATUS = 5
 
-
+#luokassa on siirrytty käyttämään normaalia pythonin taulua, koska viikko 5 tehtävässä 6 mainittiin monimutkaisuuden vähentäminen.
 class IntJoukko:
     def __init__(self, kapasiteetti:int=KAPASITEETTI, kasvatuskoko:int=OLETUSKASVATUS):
         if kapasiteetti < 0:
@@ -11,7 +11,7 @@ class IntJoukko:
 
         self.kasvatuskoko = kasvatuskoko
 
-        self.ljono = [0] * self.kapasiteetti
+        self.ljono = []
 
         self.alkioiden_lkm = 0
 
@@ -21,39 +21,19 @@ class IntJoukko:
 
     def lisaa(self, n):
         if not self.kuuluu(n):
-            self.ljono[self.alkioiden_lkm] = n
+            self.ljono.append(n)
             self.alkioiden_lkm = self.alkioiden_lkm + 1
-
-            if self.alkioiden_lkm % len(self.ljono) == 0:
-                taulukko_old = self.ljono
-                self.kopioi_taulukko(self.ljono, taulukko_old)
-                self.ljono = [0] * (self.alkioiden_lkm + self.kasvatuskoko)
-                self.kopioi_taulukko(taulukko_old, self.ljono)
-
             return True
 
         return False
 
     def poista(self, n):
-        kohta = -1
-        apu = 0
-
-        for i in range(0, self.alkioiden_lkm):
-            if n == self.ljono[i]:
-                kohta = i  # siis luku löytyy tuosta kohdasta :D
-                self.ljono[kohta] = 0
-                break
-
-        if kohta != -1:
-            for j in range(kohta, self.alkioiden_lkm - 1):
-                apu = self.ljono[j]
-                self.ljono[j] = self.ljono[j + 1]
-                self.ljono[j + 1] = apu
-
-            self.alkioiden_lkm = self.alkioiden_lkm - 1
+        if self.kuuluu(n):
+            self.ljono.remove(n)
+            self.alkioiden_lkm -= 1
             return True
-
-        return False
+        else:
+            return False
 
     def kopioi_taulukko(self, a, b):
         for i in range(0, len(a)):
