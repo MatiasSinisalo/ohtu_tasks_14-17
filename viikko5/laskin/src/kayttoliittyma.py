@@ -13,12 +13,26 @@ class Kayttoliittyma:
     def __init__(self, sovellus, root):
         self._sovellus = sovellus
         self._root = root
+        #lista sisätäen menneet komennot
+        self.historia = []
         self.komennot = {
-            Komento.SUMMA : lambda arvo: self._sovellus.plus(arvo),
-            Komento.EROTUS : lambda arvo: self._sovellus.miinus(arvo),
-            Komento.NOLLAUS : lambda arvo: self._sovellus.nollaa(),  
-            Komento.KUMOA : lambda arvo: print("KUMOA not supported yet"),  
+            Komento.SUMMA : lambda arvo: self.Summa(sovellus, arvo),
+            Komento.EROTUS : lambda arvo: self.Erotus(sovellus, arvo),
+            Komento.NOLLAUS : lambda arvo: self.Nollaus(sovellus, arvo),  
+            Komento.KUMOA : lambda arvo: self.Kumoa(sovellus, arvo),  
         }
+
+    def Summa(self, sovellus, arvo):
+        sovellus.plus(arvo)
+
+    def Erotus(self, sovellus, arvo):
+        sovellus.miinus(arvo)
+    
+    def Nollaus(self, sovellus, arvo):
+        sovellus.nollaa()
+    
+    def Kumoa(self, sovellus, arvo):
+        print("KUMOA not supported yet")
 
 
     def kaynnista(self):
