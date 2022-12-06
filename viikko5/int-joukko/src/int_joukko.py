@@ -3,18 +3,15 @@ OLETUSKASVATUS = 5
 
 
 class IntJoukko:
-    def __init__(self, kapasiteetti:int=KAPASITEETTI, kasvatuskoko=None):
+    def __init__(self, kapasiteetti:int=KAPASITEETTI, kasvatuskoko:int=OLETUSKASVATUS):
         if kapasiteetti < 0:
             raise Exception("Väärä kapasiteetti")  # heitin vaan jotain :D
         else:
             self.kapasiteetti = kapasiteetti
 
-        if kasvatuskoko is None:
-            self.kasvatuskoko = OLETUSKASVATUS
-        elif not isinstance(kapasiteetti, int) or kapasiteetti < 0:
-            raise Exception("kapasiteetti2")  # heitin vaan jotain :D
-        else:
-            self.kasvatuskoko = kasvatuskoko
+       
+      
+        self.kasvatuskoko = kasvatuskoko
 
         self.ljono = [0] * self.kapasiteetti
 
