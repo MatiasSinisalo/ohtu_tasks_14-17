@@ -26,8 +26,7 @@ class IntJoukko:
             self.ljono[0] = n
             self.alkioiden_lkm = self.alkioiden_lkm + 1
             return True
-        else:
-            pass
+       
 
         if not self.kuuluu(n):
             self.ljono[self.alkioiden_lkm] = n
