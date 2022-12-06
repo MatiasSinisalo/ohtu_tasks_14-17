@@ -54,32 +54,28 @@ class TennisGame:
         return score
     
 
+    def generate_normal_score(self, player_points):
+        score = ""
+        if player_points == 0:
+            score = score + "Love"
+        elif player_points == 1:
+            score = score + "Fifteen"
+        elif player_points == 2:
+            score = score + "Thirty"
+        elif player_points == 3:
+            score = score + "Forty"
+        return score
 
 
     def update_score(self):
         score = ""
-        temp_score = 0
-
-        temp_score = self.m_score1
-        if temp_score == 0:
-            score = score + "Love"
-        elif temp_score == 1:
-            score = score + "Fifteen"
-        elif temp_score == 2:
-            score = score + "Thirty"
-        elif temp_score == 3:
-            score = score + "Forty"
+       
+        score = score + self.generate_normal_score(self.m_score1)
 
         score = score + "-"
-        temp_score = self.m_score2
-        if temp_score == 0:
-            score = score + "Love"
-        elif temp_score == 1:
-            score = score + "Fifteen"
-        elif temp_score == 2:
-            score = score + "Thirty"
-        elif temp_score == 3:
-            score = score + "Forty"
+        
+        score = score + self.generate_normal_score(self.m_score2)
+
         return score
 
     
