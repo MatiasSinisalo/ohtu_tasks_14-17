@@ -20,7 +20,7 @@ class IntJoukko:
         
 
     def lisaa(self, n):
-        ei_ole = 0
+        
 
         if self.alkioiden_lkm == 0:
             self.ljono[0] = n
