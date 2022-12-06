@@ -78,10 +78,10 @@ class IntJoukko:
         b_taulu = b.to_int_list()
 
         for i in range(0, len(a_taulu)):
-            z.lisaa(a_taulu[i])
+            if a_taulu[i] not in b_taulu:
+                z.lisaa(a_taulu[i])
 
-        for i in range(0, len(b_taulu)):
-            z.poista(b_taulu[i])
+      
 
         return z
 
