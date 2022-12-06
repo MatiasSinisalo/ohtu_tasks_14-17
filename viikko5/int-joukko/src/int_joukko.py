@@ -39,7 +39,8 @@ class IntJoukko:
         for i in range(0, len(a)):
             b[i] = a[i]
 
-    def mahtavuus(self):
+    
+    def alkoita_joukossa(self):
         return self.alkioiden_lkm
 
     def to_int_list(self):
