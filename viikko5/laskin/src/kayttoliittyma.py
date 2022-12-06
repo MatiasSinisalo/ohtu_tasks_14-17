@@ -18,7 +18,7 @@ class Kayttoliittyma:
     def __init__(self, sovellus, root):
         self._sovellus = sovellus
         self._root = root
-        #lista sisältäen menneet Toiminnot eli kometo, arvo_ennen parit
+        #lista sisältäen menneet Toiminnot eli komento, arvo_ennen parit
         self.historia = []
         self.komennot = {
             Komento.SUMMA : lambda arvo: self.Summa(sovellus, arvo),
@@ -28,12 +28,15 @@ class Kayttoliittyma:
         }
 
     def Summa(self, sovellus, arvo):
+        self.historia.append(Toiminto(Komento.SUMMA, sovellus.tulos))
         sovellus.plus(arvo)
 
     def Erotus(self, sovellus, arvo):
+        self.historia.append(Toiminto(Komento.EROTUS, sovellus.tulos))
         sovellus.miinus(arvo)
     
     def Nollaus(self, sovellus, arvo):
+        self.historia.append(Toiminto(Komento.NOLLAUS, sovellus.tulos))
         sovellus.nollaa()
     
     def Kumoa(self, sovellus, arvo):
