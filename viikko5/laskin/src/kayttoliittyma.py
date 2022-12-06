@@ -61,16 +61,17 @@ class Kayttoliittyma:
         self._nollaus_painike.grid(row=2, column=2)
         self._kumoa_painike.grid(row=2, column=3)
 
-    def _suorita_komento(self, komento):
+    def _lue_syote(self):
         arvo = 0
-
         try:
             arvo = int(self._syote_kentta.get())
         except Exception:
             pass
-        
+        return arvo
+
+    def _suorita_komento(self, komento):
         if komento in self.komennot:
-            self.komennot[komento](arvo)
+            self.komennot[komento](self._lue_syote())
 
         self._kumoa_painike["state"] = constants.NORMAL
 
