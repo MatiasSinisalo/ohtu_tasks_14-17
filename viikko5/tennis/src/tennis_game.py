@@ -2,21 +2,21 @@ class TennisGame:
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
         self.player2_name = player2_name
-        self.m_score1 = 0
-        self.m_score2 = 0
+        self.player1_points = 0
+        self.player2_points = 0
 
     def won_point(self, player_name):
         if player_name == "player1":
-            self.m_score1 = self.m_score1 + 1
+            self.player1_points = self.player1_points + 1
         else:
-            self.m_score2 = self.m_score2 + 1
+            self.player2_points = self.player2_points + 1
 
     def get_score(self):
         score = ""
 
-        game_draw = self.m_score1 == self.m_score2
-        player_1_advantage_or_win = self.m_score1 >= 4
-        player_2_advantage_or_win = self.m_score2 >= 4
+        game_draw = self.player1_points == self.player2_points
+        player_1_advantage_or_win = self.player1_points >= 4
+        player_2_advantage_or_win = self.player2_points >= 4
 
         if game_draw:
            score = self.set_draw_score()
@@ -28,13 +28,13 @@ class TennisGame:
         return score
     def set_draw_score(self):
         score = ""
-        if self.m_score1 == 0:
+        if self.player1_points == 0:
             score = "Love-All"
-        elif self.m_score1 == 1:
+        elif self.player1_points == 1:
             score = "Fifteen-All"
-        elif self.m_score1 == 2:
+        elif self.player1_points == 2:
             score = "Thirty-All"
-        elif self.m_score1 == 3:
+        elif self.player1_points == 3:
             score = "Forty-All"
         else:
             score = "Deuce"
@@ -42,7 +42,7 @@ class TennisGame:
     
     def set_advantage_or_win_score(self):
         score = ""
-        minus_result = self.m_score1 - self. m_score2
+        minus_result = self.player1_points - self.player2_points
         if minus_result == 1:
             score = "Advantage player1"
         elif minus_result == -1:
@@ -70,11 +70,11 @@ class TennisGame:
     def update_score(self):
         score = ""
        
-        score = score + self.generate_normal_score(self.m_score1)
+        score = score + self.generate_normal_score(self.player1_points)
 
         score = score + "-"
         
-        score = score + self.generate_normal_score(self.m_score2)
+        score = score + self.generate_normal_score(self.player2_points)
 
         return score
 
