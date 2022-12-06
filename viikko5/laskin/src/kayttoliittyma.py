@@ -9,16 +9,16 @@ class Komento(Enum):
     KUMOA = 4
 
 class Toiminto:
-    def __init__(self, komento, arvoEnnen):
+    def __init__(self, komento, arvo_ennen):
         self.komento = komento
-        self.arvoEnnen = arvoEnnen
+        self.arvo_ennen = arvo_ennen
 
 
 class Kayttoliittyma:
     def __init__(self, sovellus, root):
         self._sovellus = sovellus
         self._root = root
-        #lista sisätäen menneet komennot
+        #lista sisältäen menneet Toiminnot eli kometo, arvo_ennen parit
         self.historia = []
         self.komennot = {
             Komento.SUMMA : lambda arvo: self.Summa(sovellus, arvo),
