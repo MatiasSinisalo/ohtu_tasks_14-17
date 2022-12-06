@@ -13,6 +13,10 @@ class Kayttoliittyma:
     def __init__(self, sovellus, root):
         self._sovellus = sovellus
         self._root = root
+        self.komennot = {
+            Komento.SUMMA : lambda arvo: self._sovellus.plus(arvo)  
+        }
+
 
     def kaynnista(self):
         self._tulos_var = StringVar()
@@ -61,9 +65,9 @@ class Kayttoliittyma:
             arvo = int(self._syote_kentta.get())
         except Exception:
             pass
-
+        
         if komento == Komento.SUMMA:
-            self._sovellus.plus(arvo)
+            self.komennot[Komento.SUMMA](arvo)
         elif komento == Komento.EROTUS:
             self._sovellus.miinus(arvo)
         elif komento == Komento.NOLLAUS:
