@@ -8,6 +8,11 @@ class Komento(Enum):
     NOLLAUS = 3
     KUMOA = 4
 
+class Toiminto:
+    def __init__(self, komento, arvoEnnen):
+        self.komento = komento
+        self.arvoEnnen = arvoEnnen
+
 
 class Kayttoliittyma:
     def __init__(self, sovellus, root):
