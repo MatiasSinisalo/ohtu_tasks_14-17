@@ -17,7 +17,7 @@ class TennisGame:
         game_draw = self.m_score1 == self.m_score2
         player_1_advantage_or_win = self.m_score1 >= 4
         player_2_advantage_or_win = self.m_score2 >= 4
-        
+
         if game_draw:
            score = self.set_draw_score()
         elif player_1_advantage_or_win or player_2_advantage_or_win:
@@ -53,24 +53,33 @@ class TennisGame:
             score = "Win for player2"
         return score
     
+
+
+
     def update_score(self):
         score = ""
         temp_score = 0
-        for i in range(1, 3):
-            if i == 1:
-                temp_score = self.m_score1
-            else:
-                score = score + "-"
-                temp_score = self.m_score2
 
-            if temp_score == 0:
-                score = score + "Love"
-            elif temp_score == 1:
-                score = score + "Fifteen"
-            elif temp_score == 2:
-                score = score + "Thirty"
-            elif temp_score == 3:
-                score = score + "Forty"
+        temp_score = self.m_score1
+        if temp_score == 0:
+            score = score + "Love"
+        elif temp_score == 1:
+            score = score + "Fifteen"
+        elif temp_score == 2:
+            score = score + "Thirty"
+        elif temp_score == 3:
+            score = score + "Forty"
+
+        score = score + "-"
+        temp_score = self.m_score2
+        if temp_score == 0:
+            score = score + "Love"
+        elif temp_score == 1:
+            score = score + "Fifteen"
+        elif temp_score == 2:
+            score = score + "Thirty"
+        elif temp_score == 3:
+            score = score + "Forty"
         return score
 
     
