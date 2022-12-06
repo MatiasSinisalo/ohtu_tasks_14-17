@@ -14,7 +14,10 @@ class Kayttoliittyma:
         self._sovellus = sovellus
         self._root = root
         self.komennot = {
-            Komento.SUMMA : lambda arvo: self._sovellus.plus(arvo)  
+            Komento.SUMMA : lambda arvo: self._sovellus.plus(arvo),
+            Komento.EROTUS : lambda arvo: self._sovellus.miinus(arvo),
+            Komento.NOLLAUS : lambda arvo: self._sovellus.nollaa(),  
+            Komento.KUMOA : lambda arvo: print("KUMOA not supported yet"),  
         }
 
 
@@ -66,14 +69,8 @@ class Kayttoliittyma:
         except Exception:
             pass
         
-        if komento == Komento.SUMMA:
-            self.komennot[Komento.SUMMA](arvo)
-        elif komento == Komento.EROTUS:
-            self._sovellus.miinus(arvo)
-        elif komento == Komento.NOLLAUS:
-            self._sovellus.nollaa()
-        elif komento == Komento.KUMOA:
-            pass
+
+        self.komennot[komento](arvo)
 
         self._kumoa_painike["state"] = constants.NORMAL
 
