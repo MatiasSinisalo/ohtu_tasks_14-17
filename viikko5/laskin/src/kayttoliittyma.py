@@ -40,8 +40,11 @@ class Kayttoliittyma:
         sovellus.nollaa()
     
     def Kumoa(self, sovellus, arvo):
-        print("KUMOA not supported yet")
-
+        if len(self.historia)> 0:
+            edellinen_toiminto = self.historia.pop()
+            sovellus.aseta_arvo(edellinen_toiminto.arvo_ennen)
+        else:
+            self._kumoa_painike["state"] = constants.DISABLED
 
     def kaynnista(self):
         self._tulos_var = StringVar()
@@ -92,10 +95,12 @@ class Kayttoliittyma:
         return arvo
 
     def _suorita_komento(self, komento):
+        self._kumoa_painike["state"] = constants.NORMAL
+
         if komento in self.komennot:
             self.komennot[komento](self._lue_syote())
 
-        self._kumoa_painike["state"] = constants.NORMAL
+        
 
         if self._sovellus.tulos == 0:
             self._nollaus_painike["state"] = constants.DISABLED
