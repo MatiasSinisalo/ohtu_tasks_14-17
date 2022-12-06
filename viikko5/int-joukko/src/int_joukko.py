@@ -51,12 +51,10 @@ class IntJoukko:
         x = IntJoukko()
         a_taulu = a.to_int_list()
         b_taulu = b.to_int_list()
+        yhdiste = a_taulu + b_taulu
 
-        for i in range(0, len(a_taulu)):
-            x.lisaa(a_taulu[i])
-
-        for i in range(0, len(b_taulu)):
-            x.lisaa(b_taulu[i])
+        for i in range(0, len(yhdiste)):
+            x.lisaa(yhdiste[i])
 
         return x
 
