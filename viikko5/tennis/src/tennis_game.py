@@ -13,11 +13,14 @@ class TennisGame:
 
     def get_score(self):
         score = ""
-     
 
-        if self.m_score1 == self.m_score2:
+        game_draw = self.m_score1 == self.m_score2
+        player_1_advantage_or_win = self.m_score1 >= 4
+        player_2_advantage_or_win = self.m_score2 >= 4
+        
+        if game_draw:
            score = self.set_draw_score()
-        elif self.m_score1 >= 4 or self.m_score2 >= 4:
+        elif player_1_advantage_or_win or player_2_advantage_or_win:
             score = self.set_advantage_or_win_score()
         else:
             score = self.update_score()
