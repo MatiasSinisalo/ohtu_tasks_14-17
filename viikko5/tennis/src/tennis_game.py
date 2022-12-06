@@ -16,9 +16,9 @@ class TennisGame:
         temp_score = 0
 
         if self.m_score1 == self.m_score2:
-           score = self.setDrawScore()
+           score = self.set_draw_score()
         elif self.m_score1 >= 4 or self.m_score2 >= 4:
-            score = self.setAdvantageOrWinScore()
+            score = self.set_advantage_or_win_score()
         else:
             for i in range(1, 3):
                 if i == 1:
@@ -37,7 +37,7 @@ class TennisGame:
                     score = score + "Forty"
 
         return score
-    def setDrawScore(self):
+    def set_draw_score(self):
         score = ""
         if self.m_score1 == 0:
             score = "Love-All"
@@ -51,7 +51,7 @@ class TennisGame:
             score = "Deuce"
         return score
     
-    def setAdvantageOrWinScore(self):
+    def set_advantage_or_win_score(self):
         score = ""
         minus_result = self.m_score1 - self. m_score2
         if minus_result == 1:
