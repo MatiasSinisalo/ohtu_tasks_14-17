@@ -69,8 +69,8 @@ class Kayttoliittyma:
         except Exception:
             pass
         
-
-        self.komennot[komento](arvo)
+        if komento in self.komennot:
+            self.komennot[komento](arvo)
 
         self._kumoa_painike["state"] = constants.NORMAL
 
